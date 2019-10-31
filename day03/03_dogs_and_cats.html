@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Axios -->
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <title>Dogs and Cats</title>
+  <style>
+    img{
+      width : 300px;
+      height : 300px;
+    }
+  </style>
+</head>
+<body>
+  <h1>댕댕이</h1>
+  <button id='get-dog-btn'>댕댕이 내놔</button>
+  <div class="dogs"></div>
+  <h1>고양이</h1>
+  <button id='get-cat-btn'>고양이 내놔</button>
+  <div class="cats"></div>
+  <script>
+    // 강아지 API URL
+    const DOG_API_URL = 'https://dog.ceo/api/breeds/image/random'
+    
+    const getDogButton = document.querySelector('#get-dog-btn')
+    const getDogImage = function(){
+    // Axios를 통해 강아지 사진을 달라는 요청을 보낸다.
+    axios.get(DOG_API_URL)
+    // 그리고 요청이 도착하면
+    .then(function(response) {
+      // 응답에서 imageUrl을 추출하고 
+      const imageUrl = response.data.message
+      // 이미지 객체를 생성한다.
+      const dogImage = document.createElement('img')
+      dogImage.src = imageUrl
+      dogImage.alt = 'dog'
+
+      // div.dogs 안에 강아지 이미지 태그를 push한다.
+      const dogsList = document.querySelector('div.dogs')
+      dogsList.appendChild(dogImage)
+    })
+    }
+
+    getDogButton.addEventListener('click', () => getDogImage())
+
+    const CAT_API_URL = 'https://api.thecatapi.com/v1/images/search'
+    const getCatButton = document.querySelector('#get-cat-btn')
+    const getCatImage = function(){
+    // Axios를 통해 고양이 사진을 달라는 요청을 보낸다.
+    axios.get(CAT_API_URL)
+    // 그리고 요청이 도착하면
+    .then(function(response) {
+      // 응답에서 imageUrl을 추출하고 
+      const imageUrl = response.data[0].url
+      // 이미지 객체를 생성한다.
+      const catImage = document.createElement('img')
+      catImage.src = imageUrl
+      catImage.alt = 'cat'
+
+      // div.cats 안에 고양이 이미지 태그를 push한다.
+      const catsList = document.querySelector('div.cats')
+      catsList.appendChild(catImage)
+    })
+    }
+    getCatButton.addEventListener('click', () => getCatImage())
+  </script>
+</body>
+</html>

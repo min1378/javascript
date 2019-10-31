@@ -1,0 +1,102 @@
+  <!DOCTYPE html>
+  <html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      .bg {
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg">
+      <img
+        id="dino"
+        width="100px"
+        height="100px"
+        src="https://is4-ssl.mzstatic.com/image/thumb/Purple118/v4/88/e5/36/88e536d4-8a08-7c3b-ad29-c4e5dabc9f45/AppIcon-1x_U007emarketing-sRGB-85-220-0-6.png/246x0w.jpg"
+        alt="dino"
+      />
+    </div>
+    <script>
+      const bg = document.querySelector('div.bg')
+      const dino = bg.querySelector('#dino')
+      dino.addEventListener('click', event => {
+        console.log('아야')
+      })  
+      let x = 0
+      let y = 0
+      document.addEventListener('keydown', event => {
+        
+        switch(event.key) {
+          case 'ArrowLeft' : {
+            console.log('왼쪽')
+            x -= 10
+            dino.style.left = `${x}px`
+            
+            break
+          }
+          case 'ArrowRight' : {
+            console.log('오른쪽')
+            x += 10
+            dino.style.left = `${x}px`
+            
+            break
+          }
+          case 'ArrowUp' : {
+            console.log('위')
+            y -= 10
+            dino.style.top = `${y}px`
+            
+            break
+          }
+          case 'ArrowDown' : {
+            console.log('아래')
+            y += 10
+            dino.style.top = `${y}px`
+            
+            break
+          }
+        }
+      })
+      dino.style.position = 'absolute'
+      dino.addEventListener('mouseover', () => {
+        const newWidth = window.innerHeight * Math.random()
+        const newHeight = window.innerWidth * Math.random()
+        dino.style.left = newWidth + 'px'
+        dino.style.top = newHeight + 'px'
+        console.log('마우스 올라감')
+      })
+
+      //  dino.remove() // 대상을 직접 삭제
+      //  bg.firstElementChild.remove() // bg의 첫번째 자식 삭제
+      //  bg.lastElementChild.remove() // 마지막 자식 삭제
+      //  bg.removeChild(dino) // 특정 자식 삭제
+
+      //  실습 : body 에 자식 element가 하나도 없을 때 까지 자식 element를 삭제하는 코드를 작성하세요!
+      //  힌트 : while => 반복문 진행
+      // const body = document.querySelector('body')
+      // while(body.firstElementChild !== null){
+      //   body.firstElementChild.remove()
+      // }
+
+      // const newDino = document.createElement('img')
+      // newDino.id = 'newDino'
+      // newDino.src = "https://is4-ssl.mzstatic.com/image/thumb/Purple118/v4/88/e5/36/88e536d4-8a08-7c3b-ad29-c4e5dabc9f45/AppIcon-1x_U007emarketing-sRGB-85-220-0-6.png/246x0w.jpg"
+      // newDino.alt = 'dino'
+
+      // 대상에 새로운 요소 추가
+
+      // bg.appendChild(newDino) // 가장 마지막에 추가
+      // bg.insertBefore(newDino, bg.firstElementChild) // 가장 처음에 추가
+    </script>
+    <ul>
+      
+    </ul>
+  </body>
+  </html>
